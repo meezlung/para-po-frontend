@@ -3,6 +3,13 @@
     import L from 'leaflet';
     import 'leaflet/dist/leaflet.css';
 
+    const jeepIcon = L.icon({
+        iconUrl: '/jeepney.png',
+        iconSize: [40, 40],
+        iconAnchor: [20, 40],
+        popupAnchor: [0, -40],   
+    })
+
     export let center = [14.652, 121.065]; // Near UP Diliman
     export let zoom = 14;
     export let markers = []; // [{lat: 0, lng: 0, popup: 'Jeep 1'}, ...]
@@ -44,7 +51,7 @@
 
         // Add new markers from the updated array
         markers.forEach(({ lat, lng, popup }) => {
-            const marker = L.marker([lat, lng]);
+            const marker = L.marker([lat, lng], { icon: jeepIcon });
             if (popup) {
                 marker.bindPopup(popup);
             }
@@ -53,12 +60,11 @@
     };
 </script>
 
-
 <style>
     /* Make the map container take some space */
     .map-container {
         width: 100%;
-        height: 80vh;
+        height: 90vh;
     }
 </style>
   
